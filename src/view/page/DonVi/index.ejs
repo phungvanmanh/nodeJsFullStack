@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+        <div class="card">
+            <div class="card-header">Thêm Mới Đơn Vị</div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="" class="fomr-lable mb-2">Tên Đơn Vị</label>
+                    <input type="text" v-model="add.ten_don_vi" class="form-control">
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary float-end" @click="themMoi()">Thêm Mới</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+        <div class="card">
+
+            <div class="card-header">Danh Sách Đơn Vị</div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="text-center text-nowrap align-middle">#</th>
+                                <th class="text-center text-nowrap align-middle">Tên Đơn Vị</th>
+                                <th class="text-center text-nowrap align-middle">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template v-for="(value, key) in dataDonVi" :key="key">
+                                <tr>
+                                    <th class="text-center text-nowrap align-middle">{{ key + 1 }}</th>
+                                    <td class="text-center text-nowrap align-middle">{{ value.ten_don_vi }}</td>
+                                    <td class="text-center text-nowrap align-middle">Action</td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,101 @@
+<div class="row">
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+        <div class="card">
+            <div class="card-header">Thêm Mới Cửa Hàng</div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="" class="form-lable mb-2">Tên Của Hàng</label>
+                    <input v-model="add.ten_cua_hang" type="text" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-lable mb-2">Địa Chỉ</label>
+                    <input v-model="add.dia_chi" type="text" class="form-control">
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary float-end" @click="themMoi()">Thêm Mới</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+        <div class="card">
+            <div class="card-header">Danh Sách Cửa Hàng</div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="text-center align-middle text-nowrap">#</th>
+                                <th class="text-center align-middle text-nowrap">Tên Cửa Hàng</th>
+                                <th class="text-center align-middle text-nowrap">Địa Chỉ</th>
+                                <th class="text-center align-middle text-nowrap">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template v-for="(value, index) in dataCuaHang" :key="index">
+                                <tr>
+                                    <th class="text-center align-middle text-nowrap">{{ index + 1 }}</th>
+                                    <td class="text-center align-middle text-nowrap">{{ value.ten_cua_hang }}</td>
+                                    <td class="text-center align-middle text-nowrap">{{ value.dia_chi }}</td>
+                                    <td class="text-center text-nowrap align-middle">
+                                        <button class="btn btn-primary me-2" lass="btn btn-primary"
+                                            data-bs-toggle="modal" data-bs-target="#capNhatModal"
+                                            @click="Object.assign(edit, value)">Chỉnh Sửa</button>
+                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                        @click="Object.assign(del, value)">Xóa</button>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                    <!-- Cập nhật -->
+                    <div class="modal fade" id="capNhatModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label for="" class="form-lable mb-2">Tên Của Hàng</label>
+                                        <input v-model="edit.ten_cua_hang" type="text" class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-lable mb-2">Địa Chỉ</label>
+                                        <input v-model="edit.dia_chi" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Đóng</button>
+                                    <button type="button" class="btn btn-primary" @click="capNhat()">Cập nhật</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Xóa -->
+                    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              Bạn có chắc chắn muốn xóa hay không.<br><span><b class="text-danger">Lưu ý:</b> Dữu liệu sau khi xóa không thể khôi phục lại!!</span>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                              <button type="button" class="btn btn-primary" @click="Xoa()">Xác Nhận</button>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

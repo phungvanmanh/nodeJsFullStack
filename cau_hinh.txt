@@ -1,0 +1,29 @@
+npm run make:migration -- <tên_migration>
+
+exports.up = function(knex) {
+  return knex.schema.createTable('table_name', table => {
+    table.increments('id').primary();//notNullable(), nullable()
+    table.integer(').defaultTo(1);
+    table.timestamps(true, true);
+  });
+};
+
+exports.down = function(knex) {
+  return knex.schema.dropTable('table_name');
+};
+
+//migration lên db 
+npm run migrate
+
+create Vue
+const { createApp, ref, onMounted } = Vue;
+createApp({
+    setup() {
+        onMounted(() => {
+
+        });
+        return {
+           
+        };
+    },
+}).mount('#app');

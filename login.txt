@@ -1,0 +1,58 @@
+const express = require('express');
+const session = require('express-session');
+const bcrypt = require('bcryptjs');
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Middleware to parse request bodies
+app.use(express.urlencoded({ extended: true }));
+
+// Session middleware
+app.use(session({
+    secret: 'your_secret_key',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } // for HTTP; set true for HTTPS
+}));
+
+// Route to serve the login form
+app.get('/login', (req, res) => {
+    res.send(`
+        <h1>Login</h1>
+        <form method="post" action="/login">
+            <input type="text" name="username" placeholder="Username" required />
+            <input type="password" name="password" placeholder="Password" required />
+            <button type="submit">Login</button>
+        </form>
+    `);
+});
+
+// Route to handle login
+app.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+    // Example: Validate against a user record in the database
+    const user = { username: 'test', password: '$2a$12$yourHashedPasswordHere' }; // this should come from your database
+
+    if (username === user.username) {
+        const validPassword = await bcrypt.compare(password, user.password);
+        if (validPassword) {
+            req.session.user = username;
+            res.send('Login successful!');
+        } else {
+            res.send('Invalid password');
+        }
+    } else {
+        res.send('Invalid username');
+    }
+});
+
+// Route to logout
+app.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.send("Logged out");
+});
+
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+});
