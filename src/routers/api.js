@@ -7,14 +7,12 @@ const { indexCuaHang, dataCuaHang, createCuaHang, updateCuaHang, deleteCuaHang }
 const { indexDonVi, createDonVi, dataDonVi } = require('../controllers/DonViController');
 const { indexThuoc, createThuoc, dataThuoc, updateThuoc, deleteThuoc } = require('../controllers/ThuocController');
 const { indexQuyen, createQuyen, dataQuyen, updateQuyen, deleteQuyen } = require('../controllers/QuyenController');
+const { indexNhapKho } = require('../controllers/NhapKhoController');
 const { CreateAdminRequest, UpdateAdminRequest, DeleteAdminRequest } = require("../Request/Admin");
 const { CreateCuaHangRequest, UpdateCuaHangRequest, DeleteCuaHangRequest } = require('../Request/CuaHang');
 const { CreateDonViRequest } = require('../Request/DonVi/indnex');
 const { CreateThuocRequest, UpdateThuocRequest, DeleteThuocRequest } = require('../Request/Thuoc/index');
 const { CreateQuyenRequest, UpdateQuyenRequest, DeleteQuyenRequest } = require('../Request/Quyen/index');
-const { indexThuoc } = require('../controllers/ThuocController');
-const { indexNhapKho } = require('../controllers/NhapKhoController');
-const { indexQuyen } = require('../controllers/QuyenController');
 
 const isAuthenticated = (req, res, next) => {
     if (req.session && req.session.user) {
