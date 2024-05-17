@@ -1,7 +1,8 @@
 const { check, validationResult } = require("express-validator");
+const Quyen = require("../../model/Quyen");
 const checkQuyenExists = (id) => {
-    return DonVi.findOne({ where: { id: id } }).then(don_vo => {
-      if (!don_vo) {
+    return Quyen.findOne({ where: { id: id } }).then(quyen => {
+      if (!quyen) {
         return Promise.reject('Quyền không tồn tại');
       }
     });
@@ -25,18 +26,18 @@ const UpdateQuyenRequest = [
     check("id")
         .not()
         .custom(checkQuyenExists),
-        check("ten_thuoc")
+        check("ten_quyen")
         .not()
         .isEmpty()
-        .withMessage("Tên thuốc không được để trống")
+        .withMessage("Quyền không được để trống")
         .isLength({ min: 2 })
-        .withMessage("Tên thuốc phải có ít nhất 2 ký tự"),
+        .withMessage("Quyền phải có ít nhất 2 ký tự"),
     check("ten_quyen")
         .not()
         .isEmpty()
-        .withMessage("Tên quyền không được để trống")
+        .withMessage("Quyền không được để trống")
         .isLength({ min: 2 })
-        .withMessage("Tên quyền phải có ít nhất 2 ký tự"),
+        .withMessage("Quyền phải có ít nhất 2 ký tự"),
     (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -49,7 +50,7 @@ const DeleteQuyenRequest = [
     check("id")
         .not()
         .custom(checkQuyenExists),
-        check("ten_thuoc")
+        check("ten_quyen")
         .not()
         .isEmpty()
         .withMessage("Tên thuốc không được để trống")
