@@ -11,9 +11,8 @@ const { indexNhapKho } = require('../controllers/NhapKhoController');
 const { CreateAdminRequest, UpdateAdminRequest, DeleteAdminRequest } = require("../Request/Admin");
 const { CreateCuaHangRequest, UpdateCuaHangRequest, DeleteCuaHangRequest } = require('../Request/CuaHang');
 const { CreateDonViRequest } = require('../Request/DonVi/indnex');
-const { indexThuoc } = require('../controllers/ThuocController');
-const { indexNhapKho } = require('../controllers/NhapKhoController');
-const { indexQuyen } = require('../controllers/QuyenController');
+const { CreateThuocRequest, UpdateThuocRequest, DeleteThuocRequest } = require('../Request/Thuoc');
+const { CreateQuyenRequest, UpdateQuyenRequest, DeleteQuyenRequest } = require('../Request/Quyen');
 
 const isAuthenticated = (req, res, next) => {
     if (req.session && req.session.user) {
