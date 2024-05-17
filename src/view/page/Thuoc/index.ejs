@@ -1,0 +1,74 @@
+<div class="row">
+    <div class="col-xl-4 col-lg-4 col-sm-12">
+        <div class="card">
+            <div class="card-header">Thêm Mới Thuốc</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="" class="form-label mb-2">Tên Thuốc</label>
+                            <input v-model="add.ten_thuoc" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="" class="form-label mb-2">Hạn Sử Dụng</label>
+                            <input v-model="add.han_su_dung" type="date" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="" class="form-label mb-2">Giá Nhập</label>
+                            <input v-model="add.gia_nhap" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="" class="form-label mb-2">Giá Bán</label>
+                            <input v-model="add.gia_ban" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="" class="form-label mb-2">Số Lượng</label>
+                            <input v-model="add.so_luong" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="" class="form-label mb-2">Đơn vị</label>
+                            <input v-model="add." type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label mb-2">Ghi chú</label>
+                    <textarea v-model="add.ghi_chu" name="" id="" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="card-footer text-end">
+                <button class="btn btn-primary" @click="themMoi()">Thêm Mới</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-cl-8 col-md-8 col-lg-8 col-sm-12">
+        <div class="card">
+            <div class="card-header">Danh Sách Thuốc</div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="text-center align-middle text-nowrap">#</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

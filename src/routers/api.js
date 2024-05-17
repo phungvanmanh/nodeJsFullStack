@@ -8,6 +8,7 @@ const { indexDonVi, createDonVi, dataDonVi } = require('../controllers/DonViCont
 const { CreateAdminRequest, UpdateAdminRequest, DeleteAdminRequest } = require("../Request/Admin");
 const { CreateCuaHangRequest, UpdateCuaHangRequest, DeleteCuaHangRequest } = require('../Request/CuaHang');
 const { CreateDonViRequest } = require('../Request/DonVi/indnex');
+const { indexThuoc } = require('../controllers/ThuocController');
 
 const isAuthenticated = (req, res, next) => {
     if (req.session && req.session.user) {
@@ -33,6 +34,7 @@ router.get('/login', preventLoggedInUserAccess, indexLogin);
 admin.get('/', isAuthenticated, index);
 admin.get('/cua-hang', isAuthenticated, indexCuaHang);
 admin.get('/don-vi', isAuthenticated, indexDonVi);
+admin.get('/thuoc', isAuthenticated, indexThuoc);
 
 // Get Data
 admin.get('/get-data', isAuthenticated, data);
