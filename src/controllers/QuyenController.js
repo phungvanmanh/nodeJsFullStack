@@ -1,11 +1,11 @@
 const Quyen = require("../model/Quyen");
-const indexQuyen = (req, res) => {
+const indexQuyen = (req, res) =>{
     res.render("page/Quyen/index.ejs", {
         layout:'../view/share/index',
-        title: "Cửa Hàng",
+        title: "Quyền",
         customScript: "/page/Quyen/index.js",
     });
-};
+}
 
 const createQuyen = async (req, res) => {
     const {
