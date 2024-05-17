@@ -12,7 +12,7 @@ const CreateAdminRequest = [
         .isEmpty()
         .withMessage("Tên đăng nhập không được để trống")
         .isLength({ min: 6 })
-        .withMessage("Mật khẩu phải có ít nhất 6 ký tự"),
+        .withMessage("Tên đăng nhập phải có ít nhất 6 ký tự"),
     check("ten_hien_thi")
         .not()
         .isEmpty()
@@ -20,9 +20,7 @@ const CreateAdminRequest = [
     check("password")
         .not()
         .isEmpty()
-        .withMessage("Mật khẩu không được để trống")
-        .isLength({ min: 6 })
-        .withMessage("Mật khẩu phải có ít nhất 6 ký tự"),
+        .withMessage("Mật khẩu không được để trống"),
     check("so_dien_thoai")
         .not()
         .isEmpty()
@@ -53,7 +51,7 @@ const UpdateAdminRequest = [
         .isEmpty()
         .withMessage("Tên đăng nhập không được để trống")
         .isLength({ min: 6 })
-        .withMessage("Mật khẩu phải có ít nhất 6 ký tự"),
+        .withMessage("Tên đăng nhập phải có ít nhất 6 ký tự"),
     check("ten_hien_thi")
         .not()
         .isEmpty()
@@ -61,9 +59,7 @@ const UpdateAdminRequest = [
     check("password")
         .not()
         .isEmpty()
-        .withMessage("Mật khẩu không được để trống")
-        .isLength({ min: 6 })
-        .withMessage("Mật khẩu phải có ít nhất 6 ký tự"),
+        .withMessage("Mật khẩu không được để trống"),
     check("so_dien_thoai")
         .not()
         .isEmpty()

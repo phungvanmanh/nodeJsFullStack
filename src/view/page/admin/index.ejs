@@ -14,6 +14,10 @@
                     <input v-model="add.ten_hien_thi" type="text" class="form-control">
                 </div>
                 <div class="mb-3">
+                    <label class="form-lable mb-2">Email</label>
+                    <input v-model="add.email" type="text" class="form-control">
+                </div>
+                <div class="mb-3">
                     <label class="form-lable mb-2">Số Điện Thoại</label>
                     <input v-model="add.so_dien_thoai" type="text" class="form-control">
                 </div>
@@ -21,14 +25,29 @@
                     <label class="form-lable mb-2">Mật Khẩu</label>
                     <input v-model="add.password" type="text" class="form-control">
                 </div>
-                <div class="mb-3">
-                    <label class="form-lable mb-2">Cửa Hàng</label>
-                    <select v-model="add.id_cua_hang" name="" id="" class="form-control">
-                        <option value="">Mời bạn chọn chi nhánh của hàng....</option>
-                        <template v-for="(value, key) in dataCuaHang" :key="key">
-                            <option :value="value.id">{{ value.ten_cua_hang }}</option>
-                        </template>
-                    </select>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label class="form-lable mb-2">Quyền</label>
+                            <select v-model="add.id_quyen" name="" id="" class="form-control">
+                                <option value="">Mời bạn chọn quyền....</option>
+                                <template v-for="(value, key) in dataQuyen" :key="key">
+                                    <option :value="value.id">{{ value.ten_quyen }}</option>
+                                </template>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label class="form-lable mb-2">Cửa Hàng</label>
+                            <select v-model="add.id_cua_hang" name="" id="" class="form-control">
+                                <option value="">Mời bạn chọn chi nhánh của hàng....</option>
+                                <template v-for="(value, key) in dataCuaHang" :key="key">
+                                    <option :value="value.id">{{ value.ten_cua_hang }}</option>
+                                </template>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="card-footer">
@@ -45,10 +64,12 @@
                         <thead>
                             <tr>
                                 <th class="text-center text-nowrap align-middle">#</th>
+                                <th class="text-center text-nowrap align-middle">Email</th>
                                 <th class="text-center text-nowrap align-middle">Tên Đăng Nhâp</th>
                                 <th class="text-center text-nowrap align-middle">Tên Hiển Thị</th>
                                 <th class="text-center text-nowrap align-middle">Số Điện Thoại</th>
                                 <th class="text-center text-nowrap align-middle">Cửa Hàng</th>
+                                <th class="text-center text-nowrap align-middle">Quyền</th>
                                 <th class="text-center text-nowrap align-middle">Action</th>
                             </tr>
                         </thead>
@@ -56,10 +77,12 @@
                             <template v-for="(value, key) in dataAdmin" :key="key">
                                 <tr>
                                     <th class="text-center text-nowrap align-middle">{{ key + 1 }}</th>
+                                    <td class="text-nowrap align-middle">{{ value.email }}</td>
                                     <td class="text-nowrap align-middle">{{ value.ten_dang_nhap }}</td>
                                     <td class="text-nowrap align-middle">{{ value.ten_hien_thi }}</td>
                                     <td class="text-center text-nowrap align-middle">{{ value.so_dien_thoai}}</td>
                                     <td class="text-nowrap align-middle">{{ value.ten_cua_hang}}</td>
+                                    <td class="text-nowrap align-middle">{{ value.ten_quyen}}</td>
                                     <td class="text-center text-nowrap align-middle">
                                         <button class="btn btn-primary me-2" lass="btn btn-primary"
                                             data-bs-toggle="modal" data-bs-target="#capNhatModal"
@@ -94,14 +117,29 @@
                                         <label class="form-lable mb-2">Số Điện Thoại</label>
                                         <input v-model="edit.so_dien_thoai" type="text" class="form-control">
                                     </div>
-                                    <div class="mb-3">
-                                        <label class="form-lable mb-2">Cửa Hàng</label>
-                                        <select v-model="edit.id_cua_hang" name="" id="" class="form-control">
-                                            <option value="">Mời bạn chọn chi nhánh của hàng....</option>
-                                            <template v-for="(value, key) in dataCuaHang" :key="key">
-                                                <option :value="value.id">{{ value.ten_cua_hang }}</option>
-                                            </template>
-                                        </select>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="mb-3">
+                                                <label class="form-lable mb-2">Quyền</label>
+                                                <select v-model="edit.id_quyen" name="" id="" class="form-control">
+                                                    <option value="">Mời bạn chọn quyền....</option>
+                                                    <template v-for="(value, key) in dataQuyen" :key="key">
+                                                        <option :value="value.id">{{ value.ten_quyen }}</option>
+                                                    </template>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="mb-3">
+                                                <label class="form-lable mb-2">Cửa Hàng</label>
+                                                <select v-model="edit.id_cua_hang" name="" id="" class="form-control">
+                                                    <option value="">Mời bạn chọn chi nhánh của hàng....</option>
+                                                    <template v-for="(value, key) in dataCuaHang" :key="key">
+                                                        <option :value="value.id">{{ value.ten_cua_hang }}</option>
+                                                    </template>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="modal-footer">

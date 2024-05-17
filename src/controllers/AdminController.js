@@ -15,7 +15,9 @@ const createAdmin = async (req, res) => {
         ten_hien_thi,
         so_dien_thoai,
         password,
+        email,
         id_cua_hang,
+        id_quyen,
     } = req.body;
     const hashedPassword = await bcrypt.hash(password, 12);
 
@@ -23,8 +25,10 @@ const createAdmin = async (req, res) => {
         ten_dang_nhap,
         ten_hien_thi,
         so_dien_thoai,
+        email,
         password: hashedPassword,
         id_cua_hang,
+        id_quyen,
     });
 
     res.json({
@@ -36,7 +40,8 @@ const createAdmin = async (req, res) => {
 const data = async (req, res) => {
     const data = await Admin.query()
         .join("cua_hangs", "admins.id_cua_hang", "cua_hangs.id")
-        .select("admins.*", "cua_hangs.ten_cua_hang");
+        .join('quyens', 'admins.id_quyen', 'quyens.id')
+        .select("admins.*", "cua_hangs.ten_cua_hang", 'quyens.ten_quyen');
     res.json({ data: data });
 };
 
@@ -46,7 +51,9 @@ const updateAdmin = async (req, res) => {
         ten_dang_nhap,
         ten_hien_thi,
         so_dien_thoai,
+        email,
         id_cua_hang,
+        id_quyen,
     } = req.body;
     const admin = await Admin.query().findById(id);
     if(!admin) {
@@ -57,6 +64,8 @@ const updateAdmin = async (req, res) => {
     admin.ten_hien_thi  = ten_hien_thi,
     admin.so_dien_thoai = so_dien_thoai,
     admin.id_cua_hang   = id_cua_hang,
+    admin.email         = email,
+    admin.id_quyen      = id_quyen,
     await admin.$query().patch();
 
     res.json({ 

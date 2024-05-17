@@ -1,15 +1,24 @@
 const { createApp, ref, onMounted } = Vue;
 createApp({
     setup() {
-        const add = ref({id_cua_hang : ''});
+        const add = ref({id_cua_hang : '', id_quyen:''});
         const edit = ref({});
         const del = ref({});
         const dataAdmin = ref([]);
+        const dataQuyen = ref([]);
         const dataCuaHang = ref([]);
         const fetchData = async () => {
             try {
                 const res = await axios.get('/admin/get-data');
                 dataAdmin.value = res.data.data;
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+        const getQuyen = async () => {
+            try {
+                const res = await axios.get('/admin/quyen/get-data');
+                dataQuyen.value = res.data.data;
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -80,6 +89,7 @@ createApp({
         onMounted(() => {
             fetchData();
             fetchDataCuaHang();
+            getQuyen();
         });
         return {
             add,
@@ -87,6 +97,7 @@ createApp({
             del,
             dataAdmin,
             dataCuaHang,
+            dataQuyen,
             themMoi,
             capNhat,
             Xoa
