@@ -9,6 +9,8 @@ const { CreateAdminRequest, UpdateAdminRequest, DeleteAdminRequest } = require("
 const { CreateCuaHangRequest, UpdateCuaHangRequest, DeleteCuaHangRequest } = require('../Request/CuaHang');
 const { CreateDonViRequest } = require('../Request/DonVi/indnex');
 const { indexThuoc } = require('../controllers/ThuocController');
+const { indexNhapKho } = require('../controllers/NhapKhoController');
+const { indexQuyen } = require('../controllers/QuyenController');
 
 const isAuthenticated = (req, res, next) => {
     if (req.session && req.session.user) {
@@ -35,6 +37,9 @@ admin.get('/', isAuthenticated, index);
 admin.get('/cua-hang', isAuthenticated, indexCuaHang);
 admin.get('/don-vi', isAuthenticated, indexDonVi);
 admin.get('/thuoc', isAuthenticated, indexThuoc);
+admin.get('/nhap-kho', isAuthenticated, indexNhapKho);
+admin.get('/quyen', isAuthenticated, indexQuyen);
+
 
 // Get Data
 admin.get('/get-data', isAuthenticated, data);
