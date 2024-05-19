@@ -1,45 +1,54 @@
 const Admin = require("../model/Admin");
 const bcrypt = require("bcryptjs");
-
+require('dotenv').config();
+const jwt = require('jsonwebtoken');
 const indexLogin = ("/login", (req, res) => {
     res.render("page/Login/index", {
         layout:'../view/page/Login/index',
         customScript: "/page/Login/index.js",
     });
 });
+const secretKey = process.env.SESSION_SECRET;
 
 const Login = async (req, res) => {
     try {
         const { ten_dang_nhap, password } = req.body;
 
-        // Query the database for the user
-        const user = await Admin.query().where('ten_dang_nhap', ten_dang_nhap).first();
+        // Truy vấn cơ sở dữ liệu để tìm người dùng
+        const user = await Admin.query()
+            .where('ten_dang_nhap', ten_dang_nhap)
+            .orWhere('email', ten_dang_nhap)
+            .first();
 
-        // Check if user exists
+        // Kiểm tra xem người dùng có tồn tại hay không
         if (!user) {
-            // If no user found, return an error
-            return res.status(404).json({ message: 'Invalid username' });
+            return res.status(404).json({ message: 'Tên đăng nhập không hợp lệ' });
         }
 
-        // Compare provided password with stored password
+        // So sánh mật khẩu đã cung cấp với mật khẩu được lưu trữ
         const validPassword = await bcrypt.compare(password, user.password);
         if (!validPassword) {
-            // If password comparison fails, return an error
-            return res.status(401).json({ message: 'Invalid password' });
+            return res.status(401).json({ message: 'Mật khẩu không hợp lệ' });
         }
-        console.log(ten_dang_nhap);
+
+        // Tạo payload cho token
+        const payload = { ten_dang_nhap: user.ten_dang_nhap, id: user.id };
+
+        // Tạo token
+        const token = jwt.sign(payload, secretKey, { expiresIn: '1h' });
         req.session.user = ten_dang_nhap;
-        console.log(req.session.user);
+        // Gửi phản hồi chứa token
         res.json({
-            'status' : true,
-            'message' : 'Đăng nhập thành công!'
-        }); // Redirect to the admin page upon successful login
+            status: true,
+            message: 'Đăng nhập thành công!',
+            token: token,
+            id_user: user.id
+        });
     } catch (error) {
-        // Log and return error information if an exception occurs
         console.error('Login error:', error);
-        res.status(500).json({ message: 'An error occurred during login' });
+        res.status(500).json({ message: 'Đã xảy ra lỗi trong quá trình đăng nhập' });
     }
-}
+};
 
 const Logout = (req, res) => {
     req.session.destroy((err) => {

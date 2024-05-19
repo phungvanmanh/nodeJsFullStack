@@ -28,6 +28,17 @@ $(function () {
 			})
 		}
 	});
+	document.addEventListener('DOMContentLoaded', (event) => {
+        const logoutButton = document.getElementById('logout');
+        
+        logoutButton.addEventListener('click', () => {
+            // Remove token from localStorage
+            localStorage.removeItem('token');
+            
+            // Redirect to login page or any other page
+            window.location.href = '/login'; // Redirect to the login page or home page
+        });
+    });
 	/* Back To Top */
 	$(document).ready(function () {
 		$(window).on("scroll", function () {

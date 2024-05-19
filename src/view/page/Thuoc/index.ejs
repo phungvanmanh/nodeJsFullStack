@@ -31,14 +31,29 @@
                         </div>
                     </div>
                 </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label mb-2">Đơn vị</label>
-                        <select name="" id="" v-model="add.id_don_vi" class="form-control">
-                            <option value="">Vui lòng chọn đơn vị</option>
-                            <template v-for="(value, key) in dataDonVi" :key="key">
-                                <option :value="value.id">{{ value.ten_don_vi}}</option>
-                            </template>
-                        </select>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="" class="form-label mb-2">Nhóm Thuốc</label>
+                                <select name="" id="" v-model="add.id_nhom_thuoc" class="form-control">
+                                    <option value="">Vui lòng chọn nhóm thuốc</option>
+                                    <template v-for="(value, key) in dataNhomThuoc" :key="key">
+                                        <option :value="value.id">{{ value.ten_nhom_thuoc}}</option>
+                                    </template>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="" class="form-label mb-2">Đơn vị</label>
+                                <select name="" id="" v-model="add.id_don_vi" class="form-control">
+                                    <option value="">Vui lòng chọn đơn vị</option>
+                                    <template v-for="(value, key) in dataDonVi" :key="key">
+                                        <option :value="value.id">{{ value.ten_don_vi}}</option>
+                                    </template>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 <div class="mb-3">
                     <label for="" class="form-label mb-2">Ghi chú</label>
@@ -64,6 +79,7 @@
                                 <th class="text-center align-middle text-nowrap">Giá Nhập</th>
                                 <th class="text-center align-middle text-nowrap">Giá Bán</th>
                                 <th class="text-center align-middle text-nowrap">Đơn Vị</th>
+                                <th class="text-center align-middle text-nowrap">Nhóm Thuốc</th>
                                 <th class="text-center align-middle text-nowrap">Action</th>
                             </tr>
                         </thead>
@@ -76,6 +92,7 @@
                                     <td class="align-middle text-nowrap">{{ value.gia_nhap }} VNĐ</td>
                                     <td class="align-middle text-nowrap">{{ value.gia_ban }} VNĐ</td>
                                     <td class="align-middle text-nowrap">{{ value.ten_don_vi}}</td>
+                                    <td class="align-middle text-nowrap">{{ value.ten_nhom_thuoc}}</td>
                                     <td class="text-center text-nowrap align-middle">
                                         <button class="btn btn-primary me-2" lass="btn btn-primary"
                                             data-bs-toggle="modal" data-bs-target="#capNhatModal"
@@ -126,15 +143,30 @@
                                             </div>
                                         </div>
                                     </div>
-                                        <div class="mb-3">
-                                            <label for="" class="form-label mb-2">Đơn vị</label>
-                                            <select name="" id="" v-model="edit.id_don_vi" class="form-control">
-                                                <option value="">Vui lòng chọn đơn vị</option>
-                                                <template v-for="(value, key) in dataDonVi" :key="key">
-                                                    <option :value="value.id">{{ value.ten_don_vi}}</option>
-                                                </template>
-                                            </select>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="mb-3">
+                                                <label for="" class="form-label mb-2">Nhóm Thuốc</label>
+                                                <select name="" id="" v-model="edit.id_nhom_thuoc" class="form-control">
+                                                    <option value="">Vui lòng chọn nhóm thuốc</option>
+                                                    <template v-for="(value, key) in dataNhomThuoc" :key="key">
+                                                        <option :value="value.id">{{ value.ten_nhom_thuoc}}</option>
+                                                    </template>
+                                                </select>
+                                            </div>
                                         </div>
+                                        <div class="col-6">
+                                            <div class="mb-3">
+                                                <label for="" class="form-label mb-2">Đơn vị</label>
+                                                <select name="" id="" v-model="edit.id_don_vi" class="form-control">
+                                                    <option value="">Vui lòng chọn đơn vị</option>
+                                                    <template v-for="(value, key) in dataDonVi" :key="key">
+                                                        <option :value="value.id">{{ value.ten_don_vi}}</option>
+                                                    </template>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="mb-3">
                                         <label for="" class="form-label mb-2">Ghi chú</label>
                                         <textarea v-model="edit.ghi_chu" name="" id="" class="form-control"></textarea>

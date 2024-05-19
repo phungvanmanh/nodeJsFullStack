@@ -1,17 +1,19 @@
 require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
+const cors = require('cors');
 const app = express();
+app.use(cors());
 const webRouter = require('./routers/api');
 const hostname = process.env.HOST_NAME;
 const port = process.env.PORT;
 const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
-
+const bodyParser = require('body-parser');
 // Configure body parsing middleware
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-
+app.use(bodyParser.json());
 // Configure view engine and layouts
 app.set('view engine', 'ejs');
 app.use(expressLayouts); 

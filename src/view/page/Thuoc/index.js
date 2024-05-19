@@ -2,13 +2,22 @@ const { createApp, ref, onMounted } = Vue;
 createApp({
     setup() {
         const add = ref({
-            id_don_vi:''
+            id_don_vi:'',
+            id_nhom_thuoc:'',
         });
         const dataDonVi = ref([]);
         const dataThuoc = ref([]);
         const edit = ref({});
         const del = ref({});
-
+        const dataNhomThuoc = ref([]);
+        const fetchNhomThuoc = async () => {
+            try {
+                const res = await axios.get('/admin/nhom-thuoc/get-data');
+                dataNhomThuoc.value = res.data.data;
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
         const getDonVi = async () => {
             try {
                 const res = await axios.get('/admin/don-vi/get-data');
@@ -85,6 +94,7 @@ createApp({
         onMounted(() => {
             fetchData();
             getDonVi();
+            fetchNhomThuoc();
         });
         return {
             add,
@@ -92,6 +102,7 @@ createApp({
             del,
             dataDonVi,
             dataThuoc,
+            dataNhomThuoc,
             themMoi,
             capNhat,
             Xoa

@@ -1,9 +1,9 @@
 exports.up = function(knex) {
     return knex.schema.createTable("chi_tiet_ban_hangs", (table) => {
         table.increments("id").primary();
-        table.interger("id_don_ban_hang");
-        table.interger("is_thuoc");
-        table.interger("so_luong");
+        table.integer("id_don_ban_hang");
+        table.integer("is_thuoc");
+        table.integer("so_luong");
         table.timestamps(true, true);
     });
 };

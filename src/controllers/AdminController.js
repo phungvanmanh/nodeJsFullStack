@@ -1,6 +1,7 @@
 const Admin = require("../model/Admin");
 const bcrypt = require("bcryptjs");
-
+const jwt = require('jsonwebtoken');
+const secretKey = process.env.SESSION_SECRET;
 const index = (req, res) => {
     res.render("page/admin/index", {
         layout: "../view/share/index",
@@ -90,10 +91,21 @@ const deleteAdmin = async (req, res) => {
     });
 };
 
+const getUser = async (req) => {
+    const token = req.headers['authorization'];
+    if (!token) {
+        throw new Error('Token không tồn tại');
+    }
+
+    const decoded = jwt.verify(token, secretKey);
+    console.log(decoded.id);
+};
+
 module.exports = {
     index,
     data,
     createAdmin,
     updateAdmin,
     deleteAdmin,
+    getUser,
 };

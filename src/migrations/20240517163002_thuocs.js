@@ -8,6 +8,7 @@ exports.up = function(knex) {
         table.integer("gia_nhap").notNullable();
         table.integer("gia_ban").notNullable();
         table.string("ghi_chu").notNullable();
+        table.integer("id_nhom_thuoc").notNullable();
         table.timestamps(true, true);
     });
 };
